@@ -2978,6 +2978,7 @@ GameObject:
   - 92: {fileID: 1819236524}
   - 124: {fileID: 1819236523}
   - 81: {fileID: 1819236522}
+  - 114: {fileID: 1819236526}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3023,6 +3024,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 387964612}
   m_RootOrder: 4
+--- !u!114 &1819236526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1819236521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 018225db7443eaf45857ead54578e6e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ambientMusic: {fileID: 8300000, guid: 538c5a70740c7374b90dd307494100bb, type: 3}
+  hitObject: {fileID: 8300000, guid: 659169358627c684f8e1b1b5673932cb, type: 3}
+  collectCrystal: {fileID: 8300000, guid: 9de46fb031416784d839a446a423f808, type: 3}
 --- !u!1 &1862784007
 GameObject:
   m_ObjectHideFlags: 0

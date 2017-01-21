@@ -23,7 +23,7 @@ public class ObstacleManager : MonoBehaviour {
             GameSettings.Instance.health -= 1;
             //GameSettings.Instance.speed = GameSettings.Instance.StartSpeed;
             GameSettings.Instance.speed = GameSettings.Instance.speed / 3;
-
+            AudioSourceScript.Instance.audioHitObject.Play();
             Destroy(gameObject);
 
         }

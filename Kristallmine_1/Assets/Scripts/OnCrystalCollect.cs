@@ -18,6 +18,7 @@ public class OnCrystalCollect : MonoBehaviour
             }
             player = other.gameObject;
             IsCollected = true;
+            AudioSourceScript.Instance.audioCollectCrystal.Play();
             //Destroy(gameObject, 3);
             Destroy(gameObject.transform.parent.gameObject, 0.2F);
 
