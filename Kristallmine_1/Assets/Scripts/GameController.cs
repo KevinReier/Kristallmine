@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using System.IO;
+using System.Collections.Generic;
+//using Boo.Lang;
 //This Script is controlling the whole process of the Game
 public class GameController : MonoBehaviour
 {
@@ -9,11 +12,15 @@ public class GameController : MonoBehaviour
     private GameObject esc_menue;
     public bool Escapepressed;
 
-
+    private bool highscoreupdated = false;
 
     private static GameController instance;
     private bool tutorialAlreadyOver = false;
     private bool tutorialEnd = false;
+
+
+    internal int[] tempScore = new int[10];
+    private String file = Path.Combine(Directory.GetCurrentDirectory(), "Assets/Scripts/Highscores.txt");
 
 
     public static GameController Instance
@@ -42,19 +49,20 @@ public class GameController : MonoBehaviour
         }
         //initialize the Game
         init();
+        LoadHighscores(file);
+        RenderSettings.fogColor = new Color32(111, 105, 80, 1);
+        RenderSettings.fog = true;
+        RenderSettings.fogMode = FogMode.Linear;
+
+        RenderSettings.fogStartDistance = 15;
+        RenderSettings.fogEndDistance = RenderSettings.fogStartDistance + 20;
 
     }
 
     private void StartTutorial()
     {
         //Change the Settings to Tutorialmode:
-        //No Obstacles, No SpeedBonus, Foggy Cave
-        RenderSettings.fogColor = new Color32(111, 105, 80,1);
-        RenderSettings.fog = true;
-        RenderSettings.fogMode = FogMode.Linear;
-        
-        RenderSettings.fogStartDistance = 15;
-        RenderSettings.fogEndDistance = RenderSettings.fogStartDistance + 20;
+        //No Obstacles, No SpeedBonus
         GameSettings.Instance.ObstaclesActivated = false;
         GameSettings.Instance.SpeedbonusActivated = false;
 
@@ -94,7 +102,8 @@ public class GameController : MonoBehaviour
         {
             TestTutorial();
         }
-        
+
+        UpdateHighscore();
     }
 
     private void TestTutorial()
@@ -182,6 +191,93 @@ public class GameController : MonoBehaviour
             GameObject resume = GameObject.Find("resume");
             Destroy(resume, 0);
         }
+    }
+
+    private void UpdateHighscore()
+    {
+   
+            if (!highscoreupdated && GameSettings.Instance.health <= 0)
+            {
+                addScore(Score.Instance.currScore);
+                Debug.Log("GAME OVER!");
+                highscoreupdated = true;
+            }
+    
+    }
+
+    void addScore(int score)
+    {
+        List<int> temp = new List<int>();
+        //ArrayList temp = new ArrayList();
+        for(int i = 0; i < tempScore.Length; i++)
+        {
+            temp.Add(tempScore[i]);
+        }
+        
+        temp.Add(score);
+           
+          
+        temp.Sort();
+        temp.Reverse();
+        temp.RemoveAt(10);
+        tempScore = temp.ToArray();
+
+        if (File.Exists(file))
+        {
+            StreamWriter sr = File.CreateText(file);
+
+            for (int i = 0; i < tempScore.Length; i++)
+            {
+                sr.WriteLine(tempScore[i]);
+            }
+            sr.Close();
+        }
+        else
+        {
+            File.Create(file);
+            StreamWriter sr = File.CreateText(file);
+
+            for (int i = 0; i < tempScore.Length; i++)
+            {
+                sr.WriteLine(tempScore[i]);
+            }
+            sr.Close();
+
+        }
+
+    }
+
+    
+    void LoadHighscores(String file)
+    {
+
+        if (File.Exists(file))
+        {
+            StreamReader sr = File.OpenText(file);
+            String line = sr.ReadLine();
+
+            int i = 0;
+            while (line != null)
+            {
+
+                if (tempScore.Length > i)
+                {
+                    tempScore[i] = int.Parse(line);
+                    i++;
+                }
+                line = sr.ReadLine();
+
+            }
+
+        }
+        else
+        {
+            Debug.Log("Could not Open the file: " + file + " for reading.");
+            return;
+        }
+        Array.Sort(tempScore);
+        Array.Reverse(tempScore);
+        
     }
 
 

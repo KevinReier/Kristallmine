@@ -24,6 +24,8 @@ public class ObstacleManager : MonoBehaviour {
             //GameSettings.Instance.speed = GameSettings.Instance.StartSpeed;
             GameSettings.Instance.speed = GameSettings.Instance.speed / 3;
             AudioSourceScript.Instance.audioHitObject.Play();
+            //Tell the Player it was hit so the Blinking Animation is triggered
+            PlayerTransparency.Instance.hit = true;
             Destroy(gameObject);
 
         }

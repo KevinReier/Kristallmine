@@ -39,7 +39,7 @@ public class AudioSourceScript : MonoBehaviour {
     public void Awake()
     {
         // add the necessary AudioSources:
-        audioAmbient = AddAudio(ambientMusic, true, true, 0.6f);
+        audioAmbient = AddAudio(ambientMusic, true, true, 0.2f);
         audioHitObject = AddAudio(hitObject, false, false, 0.4f);
         audioCollectCrystal = AddAudio(collectCrystal, false, false, 0.1f);
         //audioRailSound = AddAudio(railSound, false, false, 0.8f);

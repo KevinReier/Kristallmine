@@ -38,6 +38,10 @@ public class GameSettings : MonoBehaviour
     public int GemsToCollectInTut = 15;
     public int status = 0;
 
+    //PlayerHit
+    internal float hitDuration = 0.2f;
+    internal float hitAnimationTime = 2f;
+
     //Sinusfrequency for Crystal-spawning
     public float sinFrequency;
 
