@@ -20,7 +20,8 @@ public class GameController : MonoBehaviour
 
 
     internal int[] tempScore = new int[10];
-    private String file = Path.Combine(Directory.GetCurrentDirectory(), "Assets/Scripts/Highscores.txt");
+    //private String file = Path.Combine(Directory.GetCurrentDirectory(), "Assets/Scripts/Highscores.txt");
+    private String file = "Highscores.txt";
 
 
     public static GameController Instance
@@ -250,8 +251,20 @@ public class GameController : MonoBehaviour
     
     void LoadHighscores(String file)
     {
+        if (!File.Exists(file))
+        {
+            File.Create(file).Dispose();
+            using (TextWriter tw = new StreamWriter(file))
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    tw.WriteLine("0");
+                }
+                tw.Close();
+            }
 
-        if (File.Exists(file))
+        }
+        else if (File.Exists(file))
         {
             StreamReader sr = File.OpenText(file);
             String line = sr.ReadLine();

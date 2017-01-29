@@ -18,8 +18,8 @@ public class HighscoreManager : MonoBehaviour {
             return instance;
         }
     }
-    private String file = Path.Combine(Directory.GetCurrentDirectory(), "Assets/Scripts/Highscores.txt");
-    //private String file = "Highscores.txt";
+    //private String file = Path.Combine(Directory.GetCurrentDirectory(), "Assets/Scripts/Highscores.txt");
+    private String file = "Highscores.txt";
     public String highscores = "1";
     private int[] tempScore = new int[10];
 
@@ -68,7 +68,20 @@ public class HighscoreManager : MonoBehaviour {
     void LoadHighscores(String file)
     {
         
-        if (File.Exists(file))
+        if (!File.Exists(file))
+        {
+            File.Create(file).Dispose();
+            using (TextWriter tw = new StreamWriter(file))
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    tw.WriteLine("0");
+                }
+                tw.Close();
+            }
+
+        }
+        else if (File.Exists(file))
         {
             StreamReader sr = File.OpenText(file);
             String line = sr.ReadLine();
@@ -87,11 +100,12 @@ public class HighscoreManager : MonoBehaviour {
             }
             
         }
-        else
-        {
-            Debug.Log("Could not Open the file: " + file + " for reading.");
-            return;
-        }
+       
+        //else
+        //{
+        //    Debug.Log("Could not Open the file: " + file + " for reading.");
+        //    return;
+        //}
         Array.Sort(tempScore);
         Array.Reverse(tempScore);
         for(int j = 0; j < tempScore.Length; j++)
