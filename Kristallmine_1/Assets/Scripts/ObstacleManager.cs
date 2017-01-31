@@ -22,7 +22,7 @@ public class ObstacleManager : MonoBehaviour {
         {
             GameSettings.Instance.health -= 1;
             //GameSettings.Instance.speed = GameSettings.Instance.StartSpeed;
-            GameSettings.Instance.speed = GameSettings.Instance.speed / 3;
+            GameSettings.Instance.speed = GameSettings.Instance.speed-((GameSettings.Instance.speed-GameSettings.Instance.StartSpeed) * 0.75f);
             AudioSourceScript.Instance.audioHitObject.Play();
             //Tell the Player it was hit so the Blinking Animation is triggered
             PlayerTransparency.Instance.hit = true;

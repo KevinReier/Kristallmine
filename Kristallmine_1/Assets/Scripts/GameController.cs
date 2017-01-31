@@ -41,6 +41,7 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Cursor.visible = false;
         //Only show the Countdown after the Tutorial
         GameSettings.Instance.CountdownActivated = false;
         //If the Tutorial should be shown, initialize it
@@ -91,7 +92,8 @@ public class GameController : MonoBehaviour
         }
         //accelerate the Minecart until it reaches the Minimum (Start)Speed which is set in GameSettings
         accelerateMinecart();
-
+        //Check if the SpaceBar is pressed
+        SpacePressed();
         //Check if the Menu is open/ the Game is paused
         EscapeMenue();
         EndGame();
@@ -143,6 +145,13 @@ public class GameController : MonoBehaviour
         }
         tutorialEnd = false;
     }
+    private void SpacePressed()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SkipTutorial.Instance.SkipTut();
+        }
+    }
 
     private void EscapeMenue()
     {
@@ -154,12 +163,13 @@ public class GameController : MonoBehaviour
             // GameObject.Find("Countdown").transform.localScale = Vector3.zero;
 
             esc_menue.transform.localScale = Vector3.one;
+            Cursor.visible = true;
         }
         if (!Escapepressed)
         {
             Time.timeScale = 1;
             esc_menue.transform.localScale = Vector3.zero;
-
+            Cursor.visible = false;
         }
     }
 

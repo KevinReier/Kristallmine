@@ -24,12 +24,11 @@ public class GameSettings : MonoBehaviour
     public float SpawnHeight;
     public int minLength;
     public int maxLength;
-    public float YRotation;
+    internal float YRotation = 0;
 
     public bool CountdownActivated;
 
-    internal bool ObstaclesActivated;
-    public float obsticaleChance;
+    public bool ObstaclesActivated;
     public bool ShowTutorial;
     internal bool TutorialAlreadyOver= false;
 

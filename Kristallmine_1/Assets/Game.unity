@@ -906,7 +906,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SKIP
+  m_Text: SKIP [SPACE]
 --- !u!222 &370786413
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1511,17 +1511,17 @@ Prefab:
     - target: {fileID: 114000011261733288, guid: 4f37d4fbdbc8efb498fbb522cc3c6412,
         type: 2}
       propertyPath: speedreduce
-      value: 0.7
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 114000011261733288, guid: 4f37d4fbdbc8efb498fbb522cc3c6412,
         type: 2}
       propertyPath: speedbonus
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114000011261733288, guid: 4f37d4fbdbc8efb498fbb522cc3c6412,
         type: 2}
       propertyPath: CountdownActivated
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000011261733288, guid: 4f37d4fbdbc8efb498fbb522cc3c6412,
         type: 2}
@@ -1586,7 +1586,17 @@ Prefab:
     - target: {fileID: 114000011261733288, guid: 4f37d4fbdbc8efb498fbb522cc3c6412,
         type: 2}
       propertyPath: StartSpeed
-      value: 12
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011261733288, guid: 4f37d4fbdbc8efb498fbb522cc3c6412,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011261733288, guid: 4f37d4fbdbc8efb498fbb522cc3c6412,
+        type: 2}
+      propertyPath: YRotation
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f37d4fbdbc8efb498fbb522cc3c6412, type: 2}
@@ -2137,12 +2147,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 4
-  StartSpeed: 12
+  StartSpeed: 10
   SpeedbonusActivated: 0
-  speedbonus: 1
-  speedreduce: 0.7
+  speedbonus: 2
+  speedreduce: 0.4
   speed: 0
-  maxSpeed: 25
+  maxSpeed: 40
   PlayerRotationSpeed: 15
   PlayerTilt: 25
   SinusActivted: 0
@@ -2151,8 +2161,8 @@ MonoBehaviour:
   minLength: 5
   maxLength: 5
   YRotation: 0
-  CountdownActivated: 1
-  obsticaleChance: 0
+  CountdownActivated: 0
+  ObstaclesActivated: 0
   ShowTutorial: 1
   GemsToCollectInTut: 8
   status: 0

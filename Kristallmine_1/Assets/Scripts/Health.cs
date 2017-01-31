@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
 
     private static Health instance;
 
-    //create Instance of TileManager, so it can be accessed anywhere
+    
     public static Health Instance
     {
         get
