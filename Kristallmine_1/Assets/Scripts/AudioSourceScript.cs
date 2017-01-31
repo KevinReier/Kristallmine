@@ -19,12 +19,12 @@ public class AudioSourceScript : MonoBehaviour {
     public AudioClip ambientMusic;
     public AudioClip hitObject;
     public AudioClip collectCrystal;
-    //public AudioClip railSound;
+    public AudioClip railSound;
 
     internal AudioSource audioAmbient;
     internal AudioSource audioHitObject;
     internal AudioSource audioCollectCrystal;
-    //private AudioSource audioRailSound;
+    private AudioSource audioRailSound;
 
     public AudioSource AddAudio(AudioClip clip, bool loop, bool playAwake, float vol)
     {
@@ -38,17 +38,18 @@ public class AudioSourceScript : MonoBehaviour {
 
     public void Awake()
     {
-        // add the necessary AudioSources:
+        // add the necessary AudioSources: (AudioSource, loop, startatAwake, volume)
         audioAmbient = AddAudio(ambientMusic, true, true, 0.2f);
         audioHitObject = AddAudio(hitObject, false, false, 0.4f);
         audioCollectCrystal = AddAudio(collectCrystal, false, false, 0.1f);
-        //audioRailSound = AddAudio(railSound, false, false, 0.8f);
+        audioRailSound = AddAudio(railSound, true, true, 0.4f);
     }
     // Use this for initialization
     void Start () {
         Awake();
         audioAmbient.pitch = 0.8f;
         audioAmbient.Play();
+        audioRailSound.Play();
         audioCollectCrystal.pitch = 1.2f; 
         audioHitObject.pitch = 0.8f;
         

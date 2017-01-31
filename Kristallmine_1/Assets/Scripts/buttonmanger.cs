@@ -7,5 +7,6 @@ public class buttonmanger : MonoBehaviour {
     {
         SceneController.Instance.LoadScene(Scene);
     }
+
 	
 }
